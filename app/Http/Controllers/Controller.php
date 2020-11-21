@@ -10,4 +10,13 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected function jsonResponse(bool $success, int $errorCode = 0, string $errorMessage = '', array $data = [])
+    {
+        return response()->json(array_merge([
+            'success' => $success ? 1 : 0,
+            'errorCode' => $errorCode,
+            'errorMessage' => $errorMessage,
+        ], $data));
+    }
 }
