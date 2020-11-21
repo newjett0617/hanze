@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('user/register', [UserController::class, 'store'])->name('user.create');
 Route::post('user/login', [SessionController::class, 'store'])->name('session.create');
+Route::middleware(['token'])->group(function () {
+    Route::post('user/message', [MessageController::class, 'store'])->name('message.create');
+});
