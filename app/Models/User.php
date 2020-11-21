@@ -40,4 +40,11 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    // <------ Relationships ------>
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }
