@@ -20,4 +20,5 @@ Route::post('user/register', [UserController::class, 'store'])->name('user.creat
 Route::post('user/login', [SessionController::class, 'store'])->name('session.create');
 Route::middleware(['token'])->group(function () {
     Route::post('user/message', [MessageController::class, 'store'])->name('message.create');
+    Route::post('user/message/reply', [MessageController::class, 'reply'])->name('message.reply');
 });
