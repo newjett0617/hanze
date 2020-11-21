@@ -11,12 +11,22 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function jsonResponse(bool $success, int $errorCode = 0, string $errorMessage = '', array $data = [])
+    /**
+     * @var array
+     */
+    private $data = [];
+
+    protected function setData(array $value)
+    {
+        $this->data = $value;
+    }
+
+    protected function jsonResponse(bool $success, int $errorCode = 0, string $errorMessage = '')
     {
         return response()->json(array_merge([
             'success' => $success ? 1 : 0,
             'errorCode' => $errorCode,
             'errorMessage' => $errorMessage,
-        ], $data));
+        ], $this->data));
     }
 }
