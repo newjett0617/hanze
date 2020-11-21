@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 
 class UserRepository
 {
@@ -24,5 +25,12 @@ class UserRepository
     {
         return User::query()
             ->create($attributes);
+    }
+
+    public function setToken(Model $user, $value)
+    {
+        $user['token'] = $value;
+        $user->save();
+        return $user;
     }
 }
