@@ -33,4 +33,11 @@ class UserRepository
         $user->save();
         return $user;
     }
+
+    public function findToken(string $value)
+    {
+        return User::query()
+            ->where('token', $value)
+            ->first();
+    }
 }
